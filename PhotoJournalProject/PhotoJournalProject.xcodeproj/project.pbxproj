@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,11 @@
 		C197B37323DCE581000772FF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197B37123DCE581000772FF /* Main.storyboard */; };
 		C197B37523DCE587000772FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C197B37423DCE587000772FF /* Assets.xcassets */; };
 		C197B37823DCE587000772FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C197B37623DCE587000772FF /* LaunchScreen.storyboard */; };
+		C197B38323DCEA2B000772FF /* AddEntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B38223DCEA2B000772FF /* AddEntryViewController.swift */; };
+		C197B38523DCEA45000772FF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B38423DCEA45000772FF /* SettingsViewController.swift */; };
+		C197B38723DCEA7C000772FF /* journalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B38623DCEA7C000772FF /* journalEntryCell.swift */; };
+		C197B38923DCEA89000772FF /* journalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B38823DCEA89000772FF /* journalEntry.swift */; };
+		C197B38C23DCED16000772FF /* DataPersistence in Frameworks */ = {isa = PBXBuildFile; productRef = C197B38B23DCED16000772FF /* DataPersistence */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,10 @@
 		C197B37423DCE587000772FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C197B37723DCE587000772FF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		C197B37923DCE587000772FF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C197B38223DCEA2B000772FF /* AddEntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEntryViewController.swift; sourceTree = "<group>"; };
+		C197B38423DCEA45000772FF /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		C197B38623DCEA7C000772FF /* journalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalEntryCell.swift; sourceTree = "<group>"; };
+		C197B38823DCEA89000772FF /* journalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = journalEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C197B38C23DCED16000772FF /* DataPersistence in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +66,43 @@
 		C197B36A23DCE581000772FF /* PhotoJournalProject */ = {
 			isa = PBXGroup;
 			children = (
-				C197B36B23DCE581000772FF /* AppDelegate.swift */,
-				C197B36D23DCE581000772FF /* SceneDelegate.swift */,
-				C197B36F23DCE581000772FF /* ViewController.swift */,
 				C197B37123DCE581000772FF /* Main.storyboard */,
-				C197B37423DCE587000772FF /* Assets.xcassets */,
-				C197B37623DCE587000772FF /* LaunchScreen.storyboard */,
+				C197B38023DCE9C0000772FF /* Models */,
+				C197B37F23DCE9B7000772FF /* Controllers */,
+				C197B38123DCE9D7000772FF /* Supporting Files */,
 				C197B37923DCE587000772FF /* Info.plist */,
 			);
 			path = PhotoJournalProject;
+			sourceTree = "<group>";
+		};
+		C197B37F23DCE9B7000772FF /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				C197B36F23DCE581000772FF /* ViewController.swift */,
+				C197B38223DCEA2B000772FF /* AddEntryViewController.swift */,
+				C197B38423DCEA45000772FF /* SettingsViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		C197B38023DCE9C0000772FF /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C197B38623DCEA7C000772FF /* journalEntryCell.swift */,
+				C197B38823DCEA89000772FF /* journalEntry.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		C197B38123DCE9D7000772FF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C197B37423DCE587000772FF /* Assets.xcassets */,
+				C197B37623DCE587000772FF /* LaunchScreen.storyboard */,
+				C197B36B23DCE581000772FF /* AppDelegate.swift */,
+				C197B36D23DCE581000772FF /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +121,9 @@
 			dependencies = (
 			);
 			name = PhotoJournalProject;
+			packageProductDependencies = (
+				C197B38B23DCED16000772FF /* DataPersistence */,
+			);
 			productName = PhotoJournalProject;
 			productReference = C197B36823DCE581000772FF /* PhotoJournalProject.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +152,9 @@
 				Base,
 			);
 			mainGroup = C197B35F23DCE581000772FF;
+			packageReferences = (
+				C197B38A23DCED16000772FF /* XCRemoteSwiftPackageReference "DataPersistence" */,
+			);
 			productRefGroup = C197B36923DCE581000772FF /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,7 +183,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				C197B37023DCE581000772FF /* ViewController.swift in Sources */,
+				C197B38323DCEA2B000772FF /* AddEntryViewController.swift in Sources */,
+				C197B38923DCEA89000772FF /* journalEntry.swift in Sources */,
 				C197B36C23DCE581000772FF /* AppDelegate.swift in Sources */,
+				C197B38523DCEA45000772FF /* SettingsViewController.swift in Sources */,
+				C197B38723DCEA7C000772FF /* journalEntryCell.swift in Sources */,
 				C197B36E23DCE581000772FF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -338,6 +386,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		C197B38A23DCED16000772FF /* XCRemoteSwiftPackageReference "DataPersistence" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/alexpaul/DataPersistence";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.1.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		C197B38B23DCED16000772FF /* DataPersistence */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C197B38A23DCED16000772FF /* XCRemoteSwiftPackageReference "DataPersistence" */;
+			productName = DataPersistence;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C197B36023DCE581000772FF /* Project object */;
 }
