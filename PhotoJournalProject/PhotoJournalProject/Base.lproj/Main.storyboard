@@ -183,9 +183,17 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IXO-af-cyb"/>
-                                    <barButtonItem title="Item" image="camera" catalog="system" id="L90-RA-GxB"/>
+                                    <barButtonItem title="Item" image="camera" catalog="system" id="L90-RA-GxB">
+                                        <connections>
+                                            <action selector="cameraPressed" destination="GkJ-Xd-6Jg" id="shQ-pz-sdv"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="GgK-hM-OmN"/>
-                                    <barButtonItem title="Item" image="photo" catalog="system" id="ura-jg-ILN"/>
+                                    <barButtonItem title="Item" image="photo" catalog="system" id="ura-jg-ILN">
+                                        <connections>
+                                            <action selector="libraryPressed" destination="GkJ-Xd-6Jg" id="ZlS-sY-OT2"/>
+                                        </connections>
+                                    </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ecf-6g-mFg"/>
                                 </items>
                             </toolbar>
@@ -199,7 +207,11 @@
                                 <items>
                                     <barButtonItem title="Cancel" id="hLC-5B-x5u"/>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="aQd-RS-v6q"/>
-                                    <barButtonItem title="Save" id="W0q-OS-Ez3"/>
+                                    <barButtonItem title="Save" id="W0q-OS-Ez3">
+                                        <connections>
+                                            <action selector="saveButtonPressed" destination="GkJ-Xd-6Jg" id="t9C-QW-qwO"/>
+                                        </connections>
+                                    </barButtonItem>
                                 </items>
                             </toolbar>
                         </subviews>
@@ -221,6 +233,7 @@
                     <navigationItem key="navigationItem" id="hyX-9b-Xua"/>
                     <connections>
                         <outlet property="entryTextField" destination="QJV-7a-f8v" id="JYa-sp-5hs"/>
+                        <outlet property="selectedImageView" destination="hNu-Sx-aaT" id="98t-oh-d42"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DUJ-8u-flD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

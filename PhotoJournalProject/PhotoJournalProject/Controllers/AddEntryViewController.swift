@@ -13,11 +13,16 @@ import DataPersistence
 class AddEntryViewController: UIViewController {
 
     @IBOutlet weak var entryTextField: UITextField!
+    @IBOutlet weak var selectedImageView: UIImageView!
     
     private var newJournalEntry: Entry?
+    private var imagePickerController = UIImagePickerController()
     private var selectedImage: UIImage? {
         didSet {
-            appendNewImageToCollection()
+            DispatchQueue.main.async {
+                print("Image selected")
+                self.selectedImageView.image = self.selectedImage
+            }
         }
     }
     private let dataPersistence = DataPersistence<Entry>(filename: "entries.plist")
@@ -25,7 +30,7 @@ class AddEntryViewController: UIViewController {
         super.viewDidLoad()
 
     }
-    private func appendNewImageToCollection() {
+    private func appendNewEntryToCollection() {
         guard let image = selectedImage else {
             print("Image is nil")
             return
@@ -39,9 +44,42 @@ class AddEntryViewController: UIViewController {
         let entryObject = Entry(imageData: resizedImageData, date: Date(), caption: entryTextField.text ?? "")
         do {
             try dataPersistence.createItem(entryObject)
+            print("Entry saved")
         } catch {
             print("Error saving journal entry: \(error)")
         }
     }
-
+    @IBAction func libraryPressed() {
+        imagePickerController.sourceType = .photoLibrary
+        present(imagePickerController, animated: true)
+    }
+    @IBAction func cameraPressed() {
+        if UIImagePickerController.isSourceTypeAvailable(.camera) {
+            imagePickerController.sourceType = .camera
+            present(imagePickerController, animated: true)
+        } else {
+            showAlert(title: "No camera available", message: "Please select Photo library to add an image")
+        }
+    }
+    @IBAction func saveButtonPressed() {
+        appendNewEntryToCollection()
+    }
+}
+extension AddEntryViewController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        newJournalEntry?.caption = textField.text ?? ""
+        return true
+    }
+}
+extension AddEntryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        imagePickerController.dismiss(animated: true)
+    }
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        guard let image = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else {
+            return
+        }
+        selectedImage = image
+        imagePickerController.dismiss(animated: true)
+    }
 }

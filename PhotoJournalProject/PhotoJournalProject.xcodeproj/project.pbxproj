@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1383F8623DE3A9D00919254 /* ViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383F8523DE3A9D00919254 /* ViewController Extension.swift */; };
 		C197B36C23DCE581000772FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36B23DCE581000772FF /* AppDelegate.swift */; };
 		C197B36E23DCE581000772FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36D23DCE581000772FF /* SceneDelegate.swift */; };
 		C197B37023DCE581000772FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36F23DCE581000772FF /* ViewController.swift */; };
@@ -21,6 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C1383F8523DE3A9D00919254 /* ViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController Extension.swift"; sourceTree = "<group>"; };
 		C197B36823DCE581000772FF /* PhotoJournalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoJournalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C197B36B23DCE581000772FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C197B36D23DCE581000772FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -47,6 +49,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C1383F8423DE3A8900919254 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1383F8523DE3A9D00919254 /* ViewController Extension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		C197B35F23DCE581000772FF = {
 			isa = PBXGroup;
 			children = (
@@ -66,6 +76,7 @@
 		C197B36A23DCE581000772FF /* PhotoJournalProject */ = {
 			isa = PBXGroup;
 			children = (
+				C1383F8423DE3A8900919254 /* Extensions */,
 				C197B37123DCE581000772FF /* Main.storyboard */,
 				C197B38023DCE9C0000772FF /* Models */,
 				C197B37F23DCE9B7000772FF /* Controllers */,
@@ -187,6 +198,7 @@
 				C197B38923DCEA89000772FF /* journalEntry.swift in Sources */,
 				C197B36C23DCE581000772FF /* AppDelegate.swift in Sources */,
 				C197B38523DCEA45000772FF /* SettingsViewController.swift in Sources */,
+				C1383F8623DE3A9D00919254 /* ViewController Extension.swift in Sources */,
 				C197B38723DCEA7C000772FF /* journalEntryCell.swift in Sources */,
 				C197B36E23DCE581000772FF /* SceneDelegate.swift in Sources */,
 			);
