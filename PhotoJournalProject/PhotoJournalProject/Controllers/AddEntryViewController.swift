@@ -17,18 +17,18 @@ class AddEntryViewController: UIViewController {
     
     private var newJournalEntry: Entry?
     private var imagePickerController = UIImagePickerController()
-    private var selectedImage: UIImage? {
+    private var selectedImage: UIImage? /*{
         didSet {
             DispatchQueue.main.async {
                 print("Image selected")
                 self.selectedImageView.image = self.selectedImage
             }
         }
-    }
+    } */
     private let dataPersistence = DataPersistence<Entry>(filename: "entries.plist")
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        imagePickerController.delegate = self
     }
     private func appendNewEntryToCollection() {
         guard let image = selectedImage else {
@@ -63,14 +63,24 @@ class AddEntryViewController: UIViewController {
     }
     @IBAction func saveButtonPressed() {
         appendNewEntryToCollection()
+        dismiss(animated: true, completion: nil)
     }
+    @IBAction func cancelButtonPressed() {
+        dismiss(animated: true, completion: nil)
+    }
+    
 }
 extension AddEntryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         newJournalEntry?.caption = textField.text ?? ""
+        textField.resignFirstResponder()
         return true
     }
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        newJournalEntry?.caption = textField.text ?? ""
+    }
 }
+
 extension AddEntryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         imagePickerController.dismiss(animated: true)
@@ -80,6 +90,9 @@ extension AddEntryViewController: UIImagePickerControllerDelegate, UINavigationC
             return
         }
         selectedImage = image
+        selectedImageView.image = image
+        print("Image selected")
         imagePickerController.dismiss(animated: true)
     }
+    
 }
