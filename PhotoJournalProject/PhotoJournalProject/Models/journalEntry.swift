@@ -15,7 +15,7 @@ enum entryState {
 
 struct Entry: Codable & Equatable {
     let identifier = UUID().uuidString
-    var imageData: Data
+    var imageData: Data?
     var date: Date
     var caption: String
 

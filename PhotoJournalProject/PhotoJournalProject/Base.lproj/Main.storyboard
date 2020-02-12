@@ -165,7 +165,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="a1Y-HX-D5k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1048" y="837"/>
+            <point key="canvasLocation" x="1048" y="883"/>
         </scene>
         <!--Add Entry View Controller-->
         <scene sceneID="HDP-pO-5pA">
@@ -176,7 +176,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-Sx-aaT">
-                                <rect key="frame" x="20" y="85" width="374" height="314"/>
+                                <rect key="frame" x="20" y="84" width="374" height="314"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-g5-0gn">
                                 <rect key="frame" x="0.0" y="764" width="414" height="44"/>
@@ -214,18 +214,27 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter caption here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJV-7a-f8v">
-                                <rect key="frame" x="20" y="408" width="374" height="34"/>
+                                <rect key="frame" x="20" y="407" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozk-Hd-UzD">
+                                <rect key="frame" x="20" y="54" width="374" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Qib-Hd-WAS" firstAttribute="trailing" secondItem="QJV-7a-f8v" secondAttribute="trailing" constant="20" id="2FH-75-5x3"/>
+                            <constraint firstItem="ozk-Hd-UzD" firstAttribute="leading" secondItem="Qib-Hd-WAS" secondAttribute="leading" constant="20" id="95a-Q2-ayF"/>
                             <constraint firstItem="Qib-Hd-WAS" firstAttribute="trailing" secondItem="hNu-Sx-aaT" secondAttribute="trailing" constant="20" id="A8t-Uy-OTl"/>
                             <constraint firstItem="taK-uK-Xpo" firstAttribute="top" secondItem="Qib-Hd-WAS" secondAttribute="top" id="BgU-bE-xXz"/>
                             <constraint firstItem="QJV-7a-f8v" firstAttribute="top" secondItem="hNu-Sx-aaT" secondAttribute="bottom" constant="7.5" id="FyS-62-PJA"/>
-                            <constraint firstItem="hNu-Sx-aaT" firstAttribute="top" secondItem="taK-uK-Xpo" secondAttribute="bottom" constant="40" id="KrP-MW-qLK"/>
+                            <constraint firstItem="Qib-Hd-WAS" firstAttribute="trailing" secondItem="ozk-Hd-UzD" secondAttribute="trailing" constant="20" id="HjJ-PQ-YWa"/>
+                            <constraint firstItem="ozk-Hd-UzD" firstAttribute="top" secondItem="taK-uK-Xpo" secondAttribute="bottom" constant="10" id="Klk-rx-qOc"/>
+                            <constraint firstItem="hNu-Sx-aaT" firstAttribute="top" secondItem="ozk-Hd-UzD" secondAttribute="bottom" constant="8" id="Qbn-vm-Q9k"/>
                             <constraint firstItem="taK-uK-Xpo" firstAttribute="trailing" secondItem="Qib-Hd-WAS" secondAttribute="trailing" id="VyB-TN-hrm"/>
                             <constraint firstItem="hNu-Sx-aaT" firstAttribute="height" secondItem="Mox-IW-rzz" secondAttribute="height" multiplier="0.441211" constant="-54.999662000000001" id="X1a-T7-nIS"/>
                             <constraint firstItem="taK-uK-Xpo" firstAttribute="leading" secondItem="Qib-Hd-WAS" secondAttribute="leading" id="ZE2-o1-XLC"/>
@@ -236,6 +245,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hyX-9b-Xua"/>
                     <connections>
+                        <outlet property="captionLabel" destination="ozk-Hd-UzD" id="Xnb-IR-kiV"/>
                         <outlet property="entryTextField" destination="QJV-7a-f8v" id="JYa-sp-5hs"/>
                         <outlet property="selectedImageView" destination="hNu-Sx-aaT" id="98t-oh-d42"/>
                     </connections>

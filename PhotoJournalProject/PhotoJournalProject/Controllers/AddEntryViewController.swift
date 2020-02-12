@@ -14,21 +14,29 @@ class AddEntryViewController: UIViewController {
 
     @IBOutlet weak var entryTextField: UITextField!
     @IBOutlet weak var selectedImageView: UIImageView!
+    @IBOutlet weak var captionLabel: UILabel!
     
-    private var newJournalEntry: Entry?
+    private var newJournalEntry: Entry? {
+        didSet {
+            captionLabel.text = newJournalEntry?.caption
+        }
+    }
     private var imagePickerController = UIImagePickerController()
-    private var selectedImage: UIImage? /*{
+    private var selectedImage: UIImage? {
         didSet {
             DispatchQueue.main.async {
                 print("Image selected")
                 self.selectedImageView.image = self.selectedImage
+                
             }
         }
-    } */
+    }
     private let dataPersistence = DataPersistence<Entry>(filename: "entries.plist")
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePickerController.delegate = self
+        entryTextField.delegate = self
+        selectedImageView.layer.cornerRadius = 4
     }
     private func appendNewEntryToCollection() {
         guard let image = selectedImage else {
@@ -72,13 +80,19 @@ class AddEntryViewController: UIViewController {
 }
 extension AddEntryViewController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        newJournalEntry?.caption = textField.text ?? ""
         textField.resignFirstResponder()
+        guard !textField.text!.isEmpty else {
+            showAlert(title: "No caption", message: "Please enter a caption")
+            return true
+        }
+        newJournalEntry = Entry(imageData: nil, date: Date(), caption: textField.text ?? "")
+        textField.text = ""
         return true
     }
     func textFieldDidEndEditing(_ textField: UITextField) {
         newJournalEntry?.caption = textField.text ?? ""
     }
+    
 }
 
 extension AddEntryViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {

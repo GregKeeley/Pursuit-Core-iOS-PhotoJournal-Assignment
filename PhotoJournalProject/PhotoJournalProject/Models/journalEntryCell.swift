@@ -34,7 +34,7 @@ class JournalEntryCell: UICollectionViewCell {
         addGestureRecognizer(longPressGesture)
     }
     func configureCell(entry: Entry) {
-        guard let image = UIImage(data: entry.imageData) else {
+        guard let image = UIImage(data: entry.imageData!) else {
             return
         }
         entryImage.image = image
