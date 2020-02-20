@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C1383F8623DE3A9D00919254 /* ViewController Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1383F8523DE3A9D00919254 /* ViewController Extension.swift */; };
+		C139AAFC23F46A1300D289EF /* JournalEntryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C139AAFB23F46A1300D289EF /* JournalEntryCell.xib */; };
 		C197B36C23DCE581000772FF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36B23DCE581000772FF /* AppDelegate.swift */; };
 		C197B36E23DCE581000772FF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36D23DCE581000772FF /* SceneDelegate.swift */; };
 		C197B37023DCE581000772FF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C197B36F23DCE581000772FF /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		C1383F8523DE3A9D00919254 /* ViewController Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewController Extension.swift"; sourceTree = "<group>"; };
+		C139AAFB23F46A1300D289EF /* JournalEntryCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JournalEntryCell.xib; sourceTree = "<group>"; };
 		C197B36823DCE581000772FF /* PhotoJournalProject.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoJournalProject.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C197B36B23DCE581000772FF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C197B36D23DCE581000772FF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -99,8 +101,9 @@
 		C197B38023DCE9C0000772FF /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				C197B38623DCEA7C000772FF /* journalEntryCell.swift */,
 				C197B38823DCEA89000772FF /* journalEntry.swift */,
+				C197B38623DCEA7C000772FF /* journalEntryCell.swift */,
+				C139AAFB23F46A1300D289EF /* JournalEntryCell.xib */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -182,6 +185,7 @@
 			files = (
 				C197B37823DCE587000772FF /* LaunchScreen.storyboard in Resources */,
 				C197B37523DCE587000772FF /* Assets.xcassets in Resources */,
+				C139AAFC23F46A1300D289EF /* JournalEntryCell.xib in Resources */,
 				C197B37323DCE581000772FF /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

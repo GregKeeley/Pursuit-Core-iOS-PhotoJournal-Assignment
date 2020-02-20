@@ -27,6 +27,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPhotos()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(UINib(nibName: "JournalEntryCell", bundle: nil), forCellWithReuseIdentifier: "entryCell")
+        
     }
     override func viewDidAppear(_ animated: Bool) {
         loadPhotos()
@@ -45,15 +50,60 @@ class ViewController: UIViewController {
     
     
 }
-extension UICollectionViewDelegate {
+extension ViewController: UICollectionViewDelegate {
     
 }
-extension UICollectionViewDataSource {
+extension ViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        journalEntries.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "entryCell", for: indexPath) as? JournalEntryCell else {
+            fatalError("failed to downcast as JournalEntryCell")
+        }
+        cell.configureCell(entry: journalEntries[indexPath.row])
+        cell.delegate = self
+        return cell
+    }
+    
     
 }
-extension UICollectionViewDelegateFlowLayout {
-    
+extension ViewController: JournalEntryCellDelegate {
+    func didLongPress(_ journalEntryCell: JournalEntryCell, entry: Entry) {
+        print("long press")
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { alertAction in self.deleteEntry(entry)
+        }
+        alertController.addAction(cancelAction)
+        alertController.addAction(deleteAction)
+        present(alertController, animated: true, completion: nil)
+    }
+        
+    private func deleteEntry(_ entry: Entry) {
+        guard let index = journalEntries.firstIndex(of: entry) else {
+            return
+        }
+        do {
+            try dataPersistence.deleteItem(at: index)
+        } catch {
+            print("error: \(error)")
+        }
+    }
 }
+extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let maxSize = UIScreen.main.bounds
+        return CGSize(width: maxSize.width, height: maxSize.width)
+    }
+}
+
+
+
+
+
+
 extension UIImage {
     func resizeImage(to width: CGFloat, height: CGFloat) -> UIImage {
         let size = CGSize(width: width, height: height)

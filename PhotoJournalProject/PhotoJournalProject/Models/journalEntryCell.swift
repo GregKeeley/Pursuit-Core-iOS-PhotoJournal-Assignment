@@ -9,11 +9,11 @@
 import UIKit
 
 protocol JournalEntryCellDelegate: AnyObject {
-    func didLongPress(_ journalEntryCell: JournalEntryCell)
+    func didLongPress(_ journalEntryCell: JournalEntryCell, entry: Entry)
 }
 
 class JournalEntryCell: UICollectionViewCell {
-    @IBOutlet weak var entryImage: UIImageView!
+    @IBOutlet weak var journalImage: UIImageView!
     weak var delegate: JournalEntryCellDelegate?
     private lazy var longPressGesture: UILongPressGestureRecognizer = {
          let gesture = UILongPressGestureRecognizer()
@@ -25,7 +25,7 @@ class JournalEntryCell: UICollectionViewCell {
             gesture.state = .cancelled
             return
         }
-        delegate?.didLongPress(self)
+        delegate?.didLongPress(self, entry: Entry)
     }
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -37,8 +37,12 @@ class JournalEntryCell: UICollectionViewCell {
         guard let image = UIImage(data: entry.imageData!) else {
             return
         }
-        entryImage.image = image
+        journalImage.image = image
+        
     }
-    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        journalImage.image = nil
+    }
     
 }

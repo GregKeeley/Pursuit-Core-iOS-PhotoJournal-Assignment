@@ -37,6 +37,7 @@ class AddEntryViewController: UIViewController {
         imagePickerController.delegate = self
         entryTextField.delegate = self
         selectedImageView.layer.cornerRadius = 4
+        
     }
     private func appendNewEntryToCollection() {
         guard let image = selectedImage else {
@@ -89,9 +90,10 @@ extension AddEntryViewController: UITextFieldDelegate {
         textField.text = ""
         return true
     }
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        newJournalEntry?.caption = textField.text ?? ""
-    }
+    // TODO: Delete this, if func above works optimally
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        newJournalEntry?.caption = textField.text ?? ""
+//    }
     
 }
 

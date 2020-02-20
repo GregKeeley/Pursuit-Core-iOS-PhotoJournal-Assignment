@@ -4,7 +4,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -25,31 +24,7 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
-                                <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="entryCell" id="Gzy-sy-yzi" customClass="JournalEntryCell" customModule="PhotoJournalProject" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="410"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="b1b-OX-cqk">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="410"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DT3-dK-lGE">
-                                                    <rect key="frame" x="20" y="21" width="374" height="367.5"/>
-                                                </imageView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="bottom" secondItem="DT3-dK-lGE" secondAttribute="bottom" constant="20" symbolic="YES" id="B6J-ut-k8z"/>
-                                                <constraint firstItem="DT3-dK-lGE" firstAttribute="leading" secondItem="b1b-OX-cqk" secondAttribute="leading" constant="20" symbolic="YES" id="GmP-pe-R27"/>
-                                                <constraint firstItem="DT3-dK-lGE" firstAttribute="top" secondItem="b1b-OX-cqk" secondAttribute="top" constant="20" symbolic="YES" id="e9o-hT-CWD"/>
-                                                <constraint firstAttribute="trailing" secondItem="DT3-dK-lGE" secondAttribute="trailing" constant="20" symbolic="YES" id="tcl-aJ-3gy"/>
-                                            </constraints>
-                                        </collectionViewCellContentView>
-                                        <size key="customSize" width="414" height="410"/>
-                                        <connections>
-                                            <outlet property="entryImage" destination="DT3-dK-lGE" id="y3S-vL-eE4"/>
-                                        </connections>
-                                    </collectionViewCell>
-                                </cells>
+                                <cells/>
                             </collectionView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9av-a4-KzC">
                                 <rect key="frame" x="0.0" y="813" width="414" height="49"/>
@@ -175,7 +150,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-Sx-aaT">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-Sx-aaT">
                                 <rect key="frame" x="20" y="84" width="374" height="314"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-g5-0gn">
