@@ -18,7 +18,8 @@ class ViewController: UIViewController {
     
     private var journalEntries = [Entry]() {
         didSet {
-            collectionView.reloadData()
+            loadPhotos()
+                collectionView.reloadData()
         }
     }
     private var imagePickerController = UIImagePickerController()
@@ -37,10 +38,12 @@ class ViewController: UIViewController {
         loadPhotos()
     }
     private func loadPhotos() {
-        guard journalEntries.isEmpty else {
-            showAlert(title: "There are no photos", message: "Please add photos in the add photo tab")
-            return
-        }
+//        guard !journalEntries.isEmpty else {
+//            print("No photos")
+//            showAlert(title: "There are no photos", message: "Please add photos in the add photo tab")
+//            return
+//        }
+        print("photos present")
         do {
             journalEntries = try dataPersistence.loadItems()
         } catch {
@@ -91,12 +94,15 @@ extension ViewController: JournalEntryCellDelegate {
             print("error: \(error)")
         }
     }
+    
 }
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let maxSize = UIScreen.main.bounds
-        return CGSize(width: maxSize.width, height: maxSize.width)
+        let maxWidth: CGFloat = UIScreen.main.bounds.size.width
+        let itemWidth: CGFloat = maxWidth * 0.95
+        return CGSize(width: itemWidth, height: itemWidth)
     }
+    
 }
 
 

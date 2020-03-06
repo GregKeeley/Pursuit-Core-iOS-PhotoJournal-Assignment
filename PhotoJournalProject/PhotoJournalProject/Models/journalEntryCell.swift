@@ -25,7 +25,7 @@ class JournalEntryCell: UICollectionViewCell {
             gesture.state = .cancelled
             return
         }
-        delegate?.didLongPress(self, entry: Entry)
+//        delegate?.didLongPress(self, entry: Entry(imageData: <#T##Data?#>, date: <#T##Date#>, caption: <#T##String#>))
     }
     override func layoutSubviews() {
         super.layoutSubviews()
