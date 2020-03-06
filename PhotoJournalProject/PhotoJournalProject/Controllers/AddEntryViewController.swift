@@ -9,12 +9,19 @@
 import UIKit
 import AVFoundation
 import DataPersistence
+// Protocol set
+protocol EntryCreatedDelegate: AnyObject {
+    func entryCreated(entry: Entry)
+}
 
 class AddEntryViewController: UIViewController {
 
     @IBOutlet weak var entryTextField: UITextField!
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
+    
+    // Delegate set
+    weak var delegate: EntryCreatedDelegate?
     
     private var newJournalEntry: Entry? {
         didSet {
@@ -57,6 +64,8 @@ class AddEntryViewController: UIViewController {
         } catch {
             print("Error saving journal entry: \(error)")
         }
+        delegate?.entryCreated(entry: entryObject)
+
     }
     @IBAction func libraryPressed() {
         imagePickerController.sourceType = .photoLibrary
@@ -70,6 +79,7 @@ class AddEntryViewController: UIViewController {
             showAlert(title: "No camera available", message: "Please select Photo library to add an image")
         }
     }
+
     @IBAction func saveButtonPressed() {
         appendNewEntryToCollection()
         dismiss(animated: true, completion: nil)
@@ -112,3 +122,4 @@ extension AddEntryViewController: UIImagePickerControllerDelegate, UINavigationC
     }
     
 }
+

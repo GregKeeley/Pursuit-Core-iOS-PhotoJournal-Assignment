@@ -10,47 +10,43 @@ import UIKit
 import AVFoundation
 import DataPersistence
 
+
 class ViewController: UIViewController {
     
     //  cell reuseID: entryCell
     @IBOutlet weak var collectionView: UICollectionView!
     
-    
     private var journalEntries = [Entry]() {
         didSet {
-            loadPhotos()
-                collectionView.reloadData()
+                self.collectionView.reloadData()
         }
     }
-    private var imagePickerController = UIImagePickerController()
     
+    private var imagePickerController = UIImagePickerController()
     private var dataPersistence = DataPersistence<Entry>(filename: "entries.plist")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         loadPhotos()
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         collectionView.register(UINib(nibName: "JournalEntryCell", bundle: nil), forCellWithReuseIdentifier: "entryCell")
         
     }
-    override func viewDidAppear(_ animated: Bool) {
-        loadPhotos()
-    }
+    
     private func loadPhotos() {
-//        guard !journalEntries.isEmpty else {
-//            print("No photos")
-//            showAlert(title: "There are no photos", message: "Please add photos in the add photo tab")
-//            return
-//        }
-        print("photos present")
         do {
-            journalEntries = try dataPersistence.loadItems()
+            journalEntries = try dataPersistence.loadItems().reversed()
         } catch {
             showAlert(title: "Error", message: "There was an error loading the photo: \(error)")
         }
     }
-    
+
+    @IBAction func segueToAddEntryVC(_ sender: UIBarButtonItem) {
+        guard let AddEntryVC = storyboard?.instantiateViewController(identifier: "AddEntryViewController") as? AddEntryViewController else { return }
+        AddEntryVC.delegate = self
+        present(AddEntryVC, animated: true)
+    }
     
 }
 extension ViewController: UICollectionViewDelegate {
@@ -65,14 +61,16 @@ extension ViewController: UICollectionViewDataSource {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "entryCell", for: indexPath) as? JournalEntryCell else {
             fatalError("failed to downcast as JournalEntryCell")
         }
-        cell.configureCell(entry: journalEntries[indexPath.row])
         cell.delegate = self
+        cell.configureCell(entry: journalEntries[indexPath.row])
+        
         return cell
     }
     
     
 }
 extension ViewController: JournalEntryCellDelegate {
+    
     func didLongPress(_ journalEntryCell: JournalEntryCell, entry: Entry) {
         print("long press")
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -104,6 +102,17 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
 }
+
+extension ViewController: EntryCreatedDelegate {
+    func entryCreated(entry: Entry) {
+        journalEntries.append(entry)
+        
+        loadPhotos()
+    }
+}
+
+
+
 
 
 

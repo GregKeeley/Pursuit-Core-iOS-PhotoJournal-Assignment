@@ -37,7 +37,7 @@
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="y70-N3-pbE"/>
                                     <barButtonItem title="Item" image="plus" catalog="system" id="67M-e4-VpK">
                                         <connections>
-                                            <segue destination="GkJ-Xd-6Jg" kind="presentation" id="RqW-Vk-1gI"/>
+                                            <action selector="segueToAddEntryVC:" destination="BYZ-38-t0r" id="zbX-OT-NcK"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Ryh-Fl-Lg1"/>
@@ -145,16 +145,16 @@
         <!--Add Entry View Controller-->
         <scene sceneID="HDP-pO-5pA">
             <objects>
-                <viewController storyboardIdentifier="AddEntry" id="GkJ-Xd-6Jg" customClass="AddEntryViewController" customModule="PhotoJournalProject" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="AddEntryViewController" id="GkJ-Xd-6Jg" customClass="AddEntryViewController" customModule="PhotoJournalProject" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Mox-IW-rzz">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="hNu-Sx-aaT">
-                                <rect key="frame" x="20" y="84" width="374" height="314"/>
+                                <rect key="frame" x="20" y="128" width="374" height="338"/>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8GX-g5-0gn">
-                                <rect key="frame" x="0.0" y="764" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <items>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="IXO-af-cyb"/>
@@ -173,7 +173,7 @@
                                 </items>
                             </toolbar>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taK-uK-Xpo">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Cancel" id="hLC-5B-x5u">
                                         <connections>
@@ -189,12 +189,12 @@
                                 </items>
                             </toolbar>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter caption here" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QJV-7a-f8v">
-                                <rect key="frame" x="20" y="407" width="374" height="34"/>
+                                <rect key="frame" x="20" y="475" width="374" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Caption Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ozk-Hd-UzD">
-                                <rect key="frame" x="20" y="54" width="374" height="21"/>
+                                <rect key="frame" x="20" y="98" width="374" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
