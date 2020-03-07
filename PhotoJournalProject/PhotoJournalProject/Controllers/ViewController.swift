@@ -18,7 +18,9 @@ class ViewController: UIViewController {
     
     private var journalEntries = [Entry]() {
         didSet {
+            DispatchQueue.main.async {
                 self.collectionView.reloadData()
+            }
         }
     }
     
@@ -66,14 +68,16 @@ extension ViewController: JournalEntryCellDelegate {
         print("long press")
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
-        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { alertAction in self.deleteEntry(entry)
+        let deleteAction = UIAlertAction(title: "Delete", style: .destructive) { alertAction in self.deleteEntry(entry, journalEntryCell: journalEntryCell)
         }
         alertController.addAction(cancelAction)
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
     }
-    private func deleteEntry(_ entry: Entry) {
-        guard let index = journalEntries.firstIndex(of: entry) else {
+    private func deleteEntry(_ entry: Entry, journalEntryCell: JournalEntryCell) {
+        guard let index = journalEntries.firstIndex(of: entry),
+            let indexPath = collectionView.indexPath(for: journalEntryCell)
+        else {
             return
         }
         do {
@@ -81,6 +85,8 @@ extension ViewController: JournalEntryCellDelegate {
         } catch {
             print("error: \(error)")
         }
+        journalEntries.remove(at: index)
+        collectionView.deleteItems(at: [indexPath])
     }
 }
 

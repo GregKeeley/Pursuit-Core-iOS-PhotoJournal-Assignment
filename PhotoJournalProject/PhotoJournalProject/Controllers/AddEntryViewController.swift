@@ -9,20 +9,16 @@
 import UIKit
 import AVFoundation
 import DataPersistence
-// Protocol set
+
 protocol EntryCreatedDelegate: AnyObject {
     func entryCreated(entry: Entry)
 }
 
 class AddEntryViewController: UIViewController {
-
     @IBOutlet weak var entryTextField: UITextField!
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet weak var captionLabel: UILabel!
-    
-    // Delegate set
     weak var delegate: EntryCreatedDelegate?
-    
     private var newJournalEntry: Entry? {
         didSet {
             captionLabel.text = newJournalEntry?.caption
@@ -34,7 +30,6 @@ class AddEntryViewController: UIViewController {
             DispatchQueue.main.async {
                 print("Image selected")
                 self.selectedImageView.image = self.selectedImage
-                
             }
         }
     }
@@ -60,17 +55,6 @@ class AddEntryViewController: UIViewController {
         newJournalEntry?.imageData = resizedImageData
     }
     private func appendNewEntryToCollection() {
-//        guard let image = selectedImage else {
-//            print("Image is nil")
-//            return
-//        }
-//        let size = UIScreen.main.bounds.size
-//        let rect = AVMakeRect(aspectRatio: image.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
-//        let resizedImage = image.resizeImage(to: rect.size.width, height: rect.size.height)
-//        guard let resizedImageData = resizedImage.jpegData(compressionQuality: 1.0) else {
-//            return
-//        }
-//        newJournalEntry?.imageData = resizedImageData
         addPhotoToEntry()
         guard let entryObject = newJournalEntry else {
             showAlert(title: "Error", message: "Something went wrong")
@@ -83,7 +67,6 @@ class AddEntryViewController: UIViewController {
         }
         delegate?.entryCreated(entry: entryObject)
         dismiss(animated: true, completion: nil)
-
     }
     @IBAction func libraryPressed() {
         imagePickerController.sourceType = .photoLibrary
