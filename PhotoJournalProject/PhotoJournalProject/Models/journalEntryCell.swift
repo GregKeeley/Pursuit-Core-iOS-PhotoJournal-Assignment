@@ -10,14 +10,11 @@ import UIKit
 
 protocol JournalEntryCellDelegate: AnyObject {
     func didLongPress(_ journalEntryCell: JournalEntryCell, entry: Entry)
-    
 }
 
 class JournalEntryCell: UICollectionViewCell {
-    
     @IBOutlet weak var journalImage: UIImageView!
     @IBOutlet weak var entryNameLabel: UILabel!
-
     weak var delegate: JournalEntryCellDelegate?
     private var entryForDelegate: Entry?
         
@@ -26,23 +23,13 @@ class JournalEntryCell: UICollectionViewCell {
          gesture.addTarget(self, action: #selector(longPressAction(gesture:)))
          return gesture
      }()
-    
     @objc private func longPressAction(gesture: UILongPressGestureRecognizer) {
-        
-//        guard let entryForDelegate = entryForDelegate else {
-//            return
-//        }
-        
-     
         if gesture.state == .began {
             gesture.state = .cancelled
             return
         }
-        
         delegate?.didLongPress(self, entry: entryForDelegate!)
-                        
     }
-    
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = 20

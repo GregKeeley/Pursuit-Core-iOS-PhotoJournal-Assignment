@@ -46,7 +46,7 @@ class AddEntryViewController: UIViewController {
         selectedImageView.layer.cornerRadius = 4
         
     }
-    private func appendNewEntryToCollection() {
+    private func addPhotoToEntry() {
         guard let image = selectedImage else {
             print("Image is nil")
             return
@@ -57,7 +57,24 @@ class AddEntryViewController: UIViewController {
         guard let resizedImageData = resizedImage.jpegData(compressionQuality: 1.0) else {
             return
         }
-        let entryObject = Entry(imageData: resizedImageData, date: Date(), caption: entryTextField.text ?? "")
+        newJournalEntry?.imageData = resizedImageData
+    }
+    private func appendNewEntryToCollection() {
+//        guard let image = selectedImage else {
+//            print("Image is nil")
+//            return
+//        }
+//        let size = UIScreen.main.bounds.size
+//        let rect = AVMakeRect(aspectRatio: image.size, insideRect: CGRect(origin: CGPoint.zero, size: size))
+//        let resizedImage = image.resizeImage(to: rect.size.width, height: rect.size.height)
+//        guard let resizedImageData = resizedImage.jpegData(compressionQuality: 1.0) else {
+//            return
+//        }
+//        newJournalEntry?.imageData = resizedImageData
+        addPhotoToEntry()
+        guard let entryObject = newJournalEntry else {
+            showAlert(title: "Error", message: "Something went wrong")
+            return }
         do {
             try dataPersistence.createItem(entryObject)
             print("Entry saved")
@@ -65,6 +82,7 @@ class AddEntryViewController: UIViewController {
             print("Error saving journal entry: \(error)")
         }
         delegate?.entryCreated(entry: entryObject)
+        dismiss(animated: true, completion: nil)
 
     }
     @IBAction func libraryPressed() {
@@ -82,7 +100,6 @@ class AddEntryViewController: UIViewController {
 
     @IBAction func saveButtonPressed() {
         appendNewEntryToCollection()
-        dismiss(animated: true, completion: nil)
     }
     @IBAction func cancelButtonPressed() {
         dismiss(animated: true, completion: nil)
@@ -100,10 +117,6 @@ extension AddEntryViewController: UITextFieldDelegate {
         textField.text = ""
         return true
     }
-    // TODO: Delete this, if func above works optimally
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        newJournalEntry?.caption = textField.text ?? ""
-//    }
     
 }
 

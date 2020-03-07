@@ -18,5 +18,4 @@ struct Entry: Codable & Equatable {
     var imageData: Data?
     var date: Date
     var caption: String
-
 }

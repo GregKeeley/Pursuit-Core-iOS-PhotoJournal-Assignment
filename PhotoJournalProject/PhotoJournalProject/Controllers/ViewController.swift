@@ -33,7 +33,6 @@ class ViewController: UIViewController {
         collectionView.register(UINib(nibName: "JournalEntryCell", bundle: nil), forCellWithReuseIdentifier: "entryCell")
         
     }
-    
     private func loadPhotos() {
         do {
             journalEntries = try dataPersistence.loadItems().reversed()
@@ -41,17 +40,13 @@ class ViewController: UIViewController {
             showAlert(title: "Error", message: "There was an error loading the photo: \(error)")
         }
     }
-
     @IBAction func segueToAddEntryVC(_ sender: UIBarButtonItem) {
         guard let AddEntryVC = storyboard?.instantiateViewController(identifier: "AddEntryViewController") as? AddEntryViewController else { return }
         AddEntryVC.delegate = self
         present(AddEntryVC, animated: true)
     }
-    
 }
-extension ViewController: UICollectionViewDelegate {
-    
-}
+
 extension ViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         journalEntries.count
@@ -63,14 +58,10 @@ extension ViewController: UICollectionViewDataSource {
         }
         cell.delegate = self
         cell.configureCell(entry: journalEntries[indexPath.row])
-        
         return cell
     }
-    
-    
 }
 extension ViewController: JournalEntryCellDelegate {
-    
     func didLongPress(_ journalEntryCell: JournalEntryCell, entry: Entry) {
         print("long press")
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -81,7 +72,6 @@ extension ViewController: JournalEntryCellDelegate {
         alertController.addAction(deleteAction)
         present(alertController, animated: true, completion: nil)
     }
-        
     private func deleteEntry(_ entry: Entry) {
         guard let index = journalEntries.firstIndex(of: entry) else {
             return
@@ -92,8 +82,8 @@ extension ViewController: JournalEntryCellDelegate {
             print("error: \(error)")
         }
     }
-    
 }
+
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let maxWidth: CGFloat = UIScreen.main.bounds.size.width
@@ -106,18 +96,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
 extension ViewController: EntryCreatedDelegate {
     func entryCreated(entry: Entry) {
         journalEntries.append(entry)
-        
         loadPhotos()
     }
 }
-
-
-
-
-
-
-
-
 
 extension UIImage {
     func resizeImage(to width: CGFloat, height: CGFloat) -> UIImage {
